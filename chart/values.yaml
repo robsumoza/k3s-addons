@@ -1,0 +1,47 @@
+# Global Values
+repoUrl: 'https://github.com/robsumoza/k3s-addons'
+targetRevision: HEAD
+clusterName: 'pi'
+destinationServer: ''
+argoNamespace: ''
+argoProject: ''
+
+# MongoDB Community Kubernetes Operator Values
+mongodbOperator:
+  enable: true
+  createNamespace: true
+  operator:
+    watchNamespace: "*"
+
+postgresOperator:
+  enable: true
+  createNamespace: true
+  
+# Cert Manager Values
+certManager:
+  enable: true
+  createNamespace: true
+
+# Strimzi Kafka Operator
+strimziKafkaOperator:
+  enable: false
+
+# Vault default Values
+vault:
+  enable: false
+
+# Argo Rollout Values
+argoRollouts:
+  enable: false
+  createNamespace: true
+
+# Argo Rollout Values
+argoWorkflows:
+  enable: false
+
+# Kube Prometheus Stack
+kubePrometheusStack:
+  enable: true
+
+velero:
+  enable: true

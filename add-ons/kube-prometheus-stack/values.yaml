@@ -1,0 +1,69 @@
+kube-prometheus-stack:
+  ## Create default rules for monitoring the cluster
+  ## Disable rules for unreachable components
+  ##
+  defaultRules:
+    create: true
+    rules:
+      etcd: false
+      kubeScheduler: false
+
+  ## Disable component scraping for the kube controller manager, etcd, and kube-scheduler
+  ## These components are not reachable on EKS
+  ##
+  kubeControllerManager:
+    enabled: false
+  kubeEtcd:
+    enabled: false
+  kubeScheduler:
+    enabled: false
+
+  prometheus:
+    ingress:
+      enabled: true
+      annotations:
+      ingressClassName: traefik
+      hosts:
+        - prometheus.pi.local
+      paths:
+        - /
+    prometheusSpec:
+      externalUrl: "http://prometheus.pi.local/"
+      routePrefix: /
+      ## Prometheus StorageSpec for persistent data on AWS EBS
+      ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/user-guides/storage.md
+      ##
+      storageSpec:
+      volumeClaimTemplate:
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 5Gi
+
+  prometheusOperator:
+    admissionWebhooks:
+      failurePolicy: Ignore
+
+  grafana:
+    # username is 'admin'
+    adminPassword: prom-operator
+    ingress:
+      enabled: true
+      ingressClassName: traefik
+      hosts:
+        - grafana.pi.local
+      paths:
+        - /
+  alertmanager:
+    ingress:
+      enabled: true
+      ingressClassName: traefik
+      hosts:
+        - alertmanager.pi.local
+      paths:
+        - /
+
+    alertmanagerSpec:
+      externalUrl: http://alertmanager.pi.local/
+      routePrefix: /
