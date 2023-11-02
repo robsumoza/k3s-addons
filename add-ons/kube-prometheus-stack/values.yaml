@@ -1,5 +1,5 @@
 kube-prometheus-stack:
-  nameOverride: monitoring
+  fullnameOverride: monitoring
   ## Create default rules for monitoring the cluster
   ## Disable rules for unreachable components
   ##
