@@ -12,7 +12,7 @@ istio:
 
 # MongoDB Community Kubernetes Operator Values
 mongodbOperator:
-  enable: true
+  enable: false
   createNamespace: true
   operator:
     watchNamespace: "*"
