@@ -9,7 +9,7 @@ argoProject: ''
 
 istio:
   enable: true
-  
+
 # MongoDB Community Kubernetes Operator Values
 mongodbOperator:
   enable: true
@@ -18,7 +18,7 @@ mongodbOperator:
     watchNamespace: "*"
 
 postgresOperator:
-  enable: true
+  enable: false
   createNamespace: true
   
 # Cert Manager Values
