@@ -6,6 +6,10 @@ destinationServer: ''
 argoNamespace: ''
 argoProject: ''
 
+
+istio:
+  enable: true
+  
 # MongoDB Community Kubernetes Operator Values
 mongodbOperator:
   enable: true
